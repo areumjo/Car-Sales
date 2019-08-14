@@ -17,32 +17,35 @@ const initialState = {
 
 export const carReducer = (state = initialState, action) => {
     switch(action.type) {
+
         case "BUY_FEATURE": 
-        console.log('action: ', action.payload, action.price);
-            return  {
-                ...state,
-                additionalPrice: state.additionalPrice + action.price,
-                car: {...state.car, features: [...state.car.features, {name: action.payload, price: action.price}]}
-            };
+            const featureName = action.payload;
+            const featurePrice = action.price;
+            if (!state.car.features.some(item => item.name == featureName)) {
+                return {
+                    ...state,
+                    additionalPrice: state.additionalPrice + featurePrice,
+                    car: {
+                        ...state.car, 
+                        features: state.car.features.concat(
+                            {name: featureName, price: featurePrice}
+                        )
+                    },
+                    store: state.store.filter(item => item.name != featureName)
+                };
+            }
+            return state;
+
         case "REMOVE_FEATURE":
-        console.log('remove action: ', action.payload, action.price);
+            console.log('remove action: ', action.payload, action.price);
+
             return {
                 ...state,
                 additionalPrice: state.additionalPrice - action.price,
-                car: {...state.car, features: state.car.features.filter(a => a.name != action.payload)}
+                car: {...state.car, features: state.car.features.filter(a => a.name != action.payload)},
+                store: [...state.store, {name: action.payload, price: action.price}]
             }
-        // case "ADDED_TOTAL":
-        // console.log('total action: ', action.payload);
-        //     return {
-        //         ...state,
-        //         additionalPrice: state.additionalPrice + action.payload
-        //     }
-        // case "REMOVED_TOTAL":
-        // console.log('removed total action: ', action.payload);
-        //     return {
-        //         ...state,
-        //         additionalPrice: state.additionalPrice - action.payload
-        //     }
+        
         default:
             return state;
     }

@@ -8,7 +8,7 @@ import AdditionalFeatures from './components/AdditionalFeatures';
 import Total from './components/Total';
 
 const App = (props) => {
-  console.log('props:', props)
+  //console.log('props:', props)
 
   const removeFeature = (item, price) => {
     // dispatch an action here to remove an item
