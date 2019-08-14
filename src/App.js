@@ -21,7 +21,7 @@ const App = () => {
       { id: 3, name: 'Premium sound system', price: 500 },
       { id: 4, name: 'Rear spoiler', price: 250 }
     ]
-  };
+  }; // !! put it in your reducer and hook up this data to redux
 
   const removeFeature = item => {
     // dispatch an action here to remove an item
