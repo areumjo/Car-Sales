@@ -22,6 +22,12 @@ export const carReducer = (state = initialState, action) => {
             return  {
                 ...state,
                 car: {...state.car, features: [...state.car.features, {name: action.payload}]}
+            };
+        case "REMOVE_FEATURE":
+        console.log('remove action: ', action.payload);
+            return {
+                ...state,
+                car: {...state.car, features: state.car.features.filter(a => a.name != action.payload)}
             }
         default:
             return state;
