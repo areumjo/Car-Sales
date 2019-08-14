@@ -11,7 +11,7 @@ import 'bulma/css/bulma.css';
 import './styles.scss';
 
 export const store = createStore(carReducer);
-console.log(store)
+// console.log(store)
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
