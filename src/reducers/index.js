@@ -18,17 +18,31 @@ const initialState = {
 export const carReducer = (state = initialState, action) => {
     switch(action.type) {
         case "BUY_FEATURE": 
-        console.log('action: ', action.payload);
+        console.log('action: ', action.payload, action.price);
             return  {
                 ...state,
-                car: {...state.car, features: [...state.car.features, {name: action.payload}]}
+                additionalPrice: state.additionalPrice + action.price,
+                car: {...state.car, features: [...state.car.features, {name: action.payload, price: action.price}]}
             };
         case "REMOVE_FEATURE":
-        console.log('remove action: ', action.payload);
+        console.log('remove action: ', action.payload, action.price);
             return {
                 ...state,
+                additionalPrice: state.additionalPrice - action.price,
                 car: {...state.car, features: state.car.features.filter(a => a.name != action.payload)}
             }
+        // case "ADDED_TOTAL":
+        // console.log('total action: ', action.payload);
+        //     return {
+        //         ...state,
+        //         additionalPrice: state.additionalPrice + action.payload
+        //     }
+        // case "REMOVED_TOTAL":
+        // console.log('removed total action: ', action.payload);
+        //     return {
+        //         ...state,
+        //         additionalPrice: state.additionalPrice - action.payload
+        //     }
         default:
             return state;
     }

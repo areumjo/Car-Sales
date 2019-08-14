@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { addNewItem, removeItem } from './actions';
 
@@ -10,18 +10,18 @@ import Total from './components/Total';
 const App = (props) => {
   console.log('props:', props)
 
-  const removeFeature = item => {
+  const removeFeature = (item, price) => {
     // dispatch an action here to remove an item
-    console.log('remove button works?');
-    props.removeItem(item);
+    console.log('remove button works?', 'price:', price, 'item:', item);
+    props.removeItem(item, price);
   };
 
-  const buyItem = item => {
+  const buyItem = (item, price) => {
     // dipsatch an action here to add an item
-    console.log('buy feature works?');
-    props.addNewItem(item);
+    console.log('buy feature works?', 'price:', price, 'item:', item);
+    props.addNewItem(item, price);
   };
-
+  
   return (
     <div className="boxes">
       <div className="box">

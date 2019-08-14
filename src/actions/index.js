@@ -2,10 +2,10 @@
 
 // action creator - a function that 'creates' and 'return' actions
 
-export const addNewItem = name => {
-    return { type: "BUY_FEATURE", payload: name }
+export const addNewItem = (name, price) => {
+    return { type: "BUY_FEATURE", payload: name, price: price}
 }
 
-export const removeItem = name => {
-    return { type: "REMOVE_FEATURE", payload: name }
+export const removeItem = (name, price) => {
+    return { type: "REMOVE_FEATURE", payload: name, price: price }
 }
